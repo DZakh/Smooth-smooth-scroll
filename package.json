@@ -1,0 +1,19 @@
+{
+  "name": "smooth-smooth-scroll",
+  "version": "1.0.0",
+  "description": "Lightweight package for smooth scrolling",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DZakh/Smooth-smooth-scroll.git"
+  },
+  "author": "Dmitry Zakharov <dzakh.dev@gmail.com> (https://dzakh.dev/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DZakh/Smooth-smooth-scroll/issues"
+  },
+  "homepage": "https://github.com/DZakh/Smooth-smooth-scroll#readme"
+}

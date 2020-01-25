@@ -2,40 +2,71 @@ import smoothscroll from 'smoothscroll-polyfill';
 
 smoothscroll.polyfill();
 
-const prepareSmoothScroll = linkEl => {
-  const EXTRA_OFFSET = 0;
+export const initSmoothScroll = ({
+  offsetTop = 0,
+  offsetLeft = 0,
+  block = 'start',
+  inline = 'center',
+  eventListenerOptions = {},
+}) => {
+  const scrollIntoElView = (el, scrollOptions) => {
+    el.scrollIntoView(scrollOptions);
+  };
 
-  const destinationEl = document.getElementById(linkEl.dataset.smoothScrollTo);
-  const blockOption = linkEl.dataset.smoothScrollBlock || 'start';
+  const smoothScroll = e => {
+    const linkEl = e.target.closest('[data-smooth-scroll-to]');
 
-  if ((blockOption === 'start' || blockOption === 'end') && EXTRA_OFFSET) {
-    const anchorEl = document.createElement('div');
+    if (!linkEl) {
+      return;
+    }
 
-    destinationEl.setAttribute('style', 'position: relative;');
-    anchorEl.setAttribute('style', `position: absolute; top: -${EXTRA_OFFSET}px; left: 0;`);
+    const destinationEl = document.getElementById(linkEl.dataset.smoothScrollTo);
+    const scrollOptions = {
+      block: linkEl.dataset.smoothScrollBlock || block,
+      inline: linkEl.dataset.smoothScrollInline || inline,
+      behavior: 'smooth',
+    };
 
-    destinationEl.appendChild(anchorEl);
+    if (offsetTop || offsetLeft) {
+      const doesAnchorElExist = destinationEl.lastElementChild.classList.contains(
+        'js-smooth-scroll-anchor'
+      );
+      const anchorEl = doesAnchorElExist
+        ? destinationEl.lastElementChild
+        : document.createElement('div');
 
-    linkEl.addEventListener('click', () => {
-      anchorEl.scrollIntoView({
-        block: blockOption,
-        behavior: 'smooth',
-      });
-    });
-  }
+      if (!doesAnchorElExist) {
+        destinationEl.setAttribute('style', 'position: relative;');
 
-  if (blockOption === 'center' || !EXTRA_OFFSET) {
-    linkEl.addEventListener('click', () => {
-      destinationEl.scrollIntoView({
-        block: blockOption,
-        behavior: 'smooth',
-      });
-    });
-  }
-};
+        // prettier-ignore
+        const anchorStyles = `
+          position: absolute;
+          z-index: -1;
+          ${offsetTop ? `
+            top: -${offsetTop}px;
+            height: ${destinationEl.offsetHeight}px;
+          ` : ''}
+          ${offsetLeft ? `
+            left: -${offsetLeft}px;
+            width: ${destinationEl.offsetWidth}px;
+          ` : ''}
+        `.replace(/\s/g, '');
 
-export const activateSmoothScroll = () => {
-  const linkEls = [...document.querySelectorAll('[data-smooth-scroll-to]')];
+        anchorEl.setAttribute('style', anchorStyles);
+        anchorEl.setAttribute('class', 'js-smooth-scroll-anchor');
 
-  linkEls.forEach(linkEl => prepareSmoothScroll(linkEl));
+        destinationEl.appendChild(anchorEl);
+      }
+
+      scrollIntoElView(anchorEl, scrollOptions);
+    } else {
+      scrollIntoElView(destinationEl, scrollOptions);
+    }
+  };
+
+  document.addEventListener('click', smoothScroll, eventListenerOptions);
+
+  return () => {
+    document.removeEventListener('click', smoothScroll, eventListenerOptions);
+  };
 };
