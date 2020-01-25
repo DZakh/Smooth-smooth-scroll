@@ -1,6 +1,6 @@
 {
   "name": "smooth-smooth-scroll",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lightweight package for smooth scrolling",
   "main": "./dist/index.min.js",
   "scripts": {
