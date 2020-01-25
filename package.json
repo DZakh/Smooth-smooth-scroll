@@ -1,8 +1,9 @@
 {
   "name": "smooth-smooth-scroll",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Lightweight package for smooth scrolling",
   "main": "./dist/index.min.js",
+  "module": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "npx babel ./src -d ./dist --presets=@babel/preset-env,minify --out-file-extension .min.js"
@@ -33,5 +34,8 @@
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "prettier": "^1.18.2"
-  }
+  },
+  "files": [
+    "./dist"
+  ]
 }

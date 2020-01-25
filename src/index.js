@@ -1,8 +1,10 @@
 export const initSmoothScroll = ({
   offsetTop = 0,
+  offsetBottom = 0,
   offsetLeft = 0,
+  offsetRight = 0,
   block = 'start',
-  inline = 'center',
+  inline = 'nearest',
   eventListenerOptions = {},
 }) => {
   const scrollIntoElView = (el, scrollOptions) => {
@@ -17,13 +19,17 @@ export const initSmoothScroll = ({
     }
 
     const destinationEl = document.getElementById(linkEl.dataset.smoothScrollTo);
+
     const scrollOptions = {
       block: linkEl.dataset.smoothScrollBlock || block,
       inline: linkEl.dataset.smoothScrollInline || inline,
       behavior: 'smooth',
     };
 
-    if (offsetTop || offsetLeft) {
+    const isVerticalOffset = scrollOptions.block !== 'nearest' && (offsetTop || offsetBottom);
+    const isHorizontalOffset = scrollOptions.inline !== 'nearest' && (offsetLeft || offsetRight);
+
+    if (isVerticalOffset || isHorizontalOffset) {
       const doesAnchorElExist = destinationEl.lastElementChild.classList.contains(
         'js-smooth-scroll-anchor'
       );
@@ -34,19 +40,13 @@ export const initSmoothScroll = ({
       if (!doesAnchorElExist) {
         destinationEl.setAttribute('style', 'position: relative;');
 
+        const defaultStyles = `position:absolute;z-index:-1;`;
         // prettier-ignore
-        const anchorStyles = `
-          position: absolute;
-          z-index: -1;
-          ${offsetTop ? `
-            top: -${offsetTop}px;
-            height: ${destinationEl.offsetHeight}px;
-          ` : ''}
-          ${offsetLeft ? `
-            left: -${offsetLeft}px;
-            width: ${destinationEl.offsetWidth}px;
-          ` : ''}
-        `.replace(/\s/g, '');
+        const verticalStyles = isVerticalOffset ? `height:${destinationEl.offsetHeight + offsetTop + offsetBottom}px;${offsetTop ? `top:-${offsetTop}px;` : ''}${offsetBottom ? `bottom:-${offsetBottom}px;` : ''}` : '';
+        // prettier-ignore
+        const horizontalStyles = isHorizontalOffset ? `width:${destinationEl.offsetWidth + offsetLeft + offsetRight}px;${offsetLeft ? `left:-${offsetLeft}px;` : ''}${offsetRight ? `right:-${offsetRight}px;` : ''}` : '';
+
+        const anchorStyles = defaultStyles + verticalStyles + horizontalStyles;
 
         anchorEl.setAttribute('style', anchorStyles);
         anchorEl.setAttribute('class', 'js-smooth-scroll-anchor');
