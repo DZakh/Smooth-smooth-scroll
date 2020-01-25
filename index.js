@@ -1,7 +1,3 @@
-import smoothscroll from 'smoothscroll-polyfill';
-
-smoothscroll.polyfill();
-
 export const initSmoothScroll = ({
   offsetTop = 0,
   offsetLeft = 0,

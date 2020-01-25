@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DZakh/Smooth-smooth-scroll/issues"
   },
-  "homepage": "https://github.com/DZakh/Smooth-smooth-scroll#readme"
+  "homepage": "https://github.com/DZakh/Smooth-smooth-scroll#readme",
+  "dependencies": {
+    "smoothscroll-polyfill": "^0.4.4"
+  }
 }
