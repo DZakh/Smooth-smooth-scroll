@@ -1,10 +1,11 @@
 {
   "name": "smooth-smooth-scroll",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Lightweight package for smooth scrolling",
-  "main": "index.js",
+  "main": "./dist/index.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "npx babel ./src -d ./dist --presets=@babel/preset-env,minify --out-file-extension .min.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,19 @@
   "homepage": "https://github.com/DZakh/Smooth-smooth-scroll#readme",
   "dependencies": {
     "smoothscroll-polyfill": "^0.4.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-preset-minify": "^0.5.1",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
   }
 }
