@@ -1,49 +1,110 @@
-# smoothScroll()
-My realization of a smooth scrolling function. It'd be much easier to just use something like `window.scroll()` or `window.scrollBy()`, but I encountered the problem with them that everything becomes kind of janky after scroll. So here is my solution, it comes up with the `scrollIntoView()` function which doesn't create lags and also preventable. And in order to use it with some extra offset we use a small hack with adding element and using it as an anchor, that may be an extremely useful thing when you have something like a fixed header on the top of your screen. Also, there is a lightweight polyfill, so this will work even in IE and Safari.
+# Smooth smooth scroll
 
-## How to use
-### 1. Install [polyfill](https://www.npmjs.com/package/smoothscroll-polyfill)
+That's a simple to use realization of a smooth scroll for your website. It's especially useful if you have some fixed elements and want to correct the scroll destination.
+
+## Advantages
+
+- Very lightweight - only _1.42 KB_
+- Works in all alive browsers (requires _4.73 KB_ of polyfills)
+- You can change parameters of scroll after the first activation with a bit of js and easily add new links.
+- It's built with `scrollIntoView` what gives a lot of advantages other smooth-scroll packages don't have:
+
+  - It has good performance without weird jankiness and other bugs
+  - You will not have any problems if you start clicking on the smooth-scroll trigger button as crazy
+  - If the scroll event has already started it can be easily stoped before the end
+  - There is a way to choose the position of the destination element. So, let's just say, if you have some element on your page, you can set either it's going to be at the top edge of the screen, at center, or the bottom edge after scroll
+  - The same thing works with horizontal scrolling or even with both at the same time
+
+- And the last but one of the most essential features of the package is the ability to set an offset for scroll. It may be useful just for small adjustments, but the most obvious use case is to prevent content overlap with a fixed header
+
+## Disadvantages
+
+- There is no a proper way to know when the scroll event is finished
+- You cannot set up easing for scroll animation
+- Some people may complain about accessibility
+- URL doesn't change, but, on the other hand, you can make any element a link
+
+## How to
+
+### 1. Install via npm
+
 ```
-# npm 
-npm install smoothscroll-polyfill --save
- 
-# yarn 
-yarn add smoothscroll-polyfill
+npm i smooth-smooth-scroll
 ```
-### 2. Copy the code from `index.js` and add it to your project.
-### 3. Connect the `smoothScroll` function to your javascript.
+
+### 2. Include _smooth-smooth-scroll_ in your project
+
 ```js
-import { activateSmoothScroll } from './place-where-you-keep-your-handlers';
-
-actiavateSmoothScroll();
+// Don't forget polyfill first if you need it (Required by Safari and IE)
+import 'smooth-smooth-scroll/polyfill';
+import { initSmoothScroll } from 'smooth-smooth-scroll';
 ```
-### 4. In your Html create something like link elements
+
+> Note: Polyfill file contains three things: [smoothscroll-polyfill](<[https://www.npmjs.com/package/smoothscroll-polyfill](https://www.npmjs.com/package/smoothscroll-polyfill)>), [lastElementChild polyfill](<[https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/lastElementChild](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/lastElementChild)>) and [closest polyfill](<[https://developer.mozilla.org/en-US/docs/Web/API/Element/closest](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest)>).
+
+So, it means you can use them further in the project without any worries.
+
+### 3. Initialize
+
+```js
+const disableSmoothScroll = initSmoothScroll(smoothScrollOptions);
+```
+
+The `initSmoothScroll` returns a function which removes the eventListener used by _smooth-smooth-scroll_.
+
+### 4. Create a link
+
+You just need to add a data attribute to any element. You can do it initially by hand in your Html file or later with javascript.
+
 ```html
 <div class="some-element" data-smooth-scroll-to="element-id"></div>
-<div id="element-id"></div>
+<div class="another-element" id="element-id"></div>
 ```
-It may be any element, you just need to add the folowing data attribute:
-```html
-data-smooth-scroll-to="element-id"
-```
-After click on the element with such a data attribute the page will be scrolled to the choosen distination.
-Also, you can set another data attribute to your link elements:
-```html
-data-smooth-scroll-block="start"
-```
-It represents the `block` option of the `scrollIntoView()` function. By default, it's `start`. Read more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView).
-### 5. Adjust the smoothScroll function to your needs
-There are few reasons why I decided not to create an ultimate npm package with a bunch of options from this peace of code:  
-The first one, really, it's really really small.  
-And the second one - being an npm package it would need to have options for all the possible usage cases and a lot of useless code because of that. I think it's better to keep it compact and be able to easily adjust it when you really need. So feel free to mess up with my solution, because it's definitely isn't perfect and also may cover not all of your cases.  
-For example, if you have some fixed header (or I call it with the word `masthead`) you can do something like this:
+
 ```js
-const mastheadEl = document.querySelector(someMastheadSelector);
+const someElement = document.querySelector('.some-element');
 
-// and add it's height to the EXTRA_OFFSET variable
-
-const EXTRA_OFFSET = mastheadEl.offsetHeight - 3;
+someElement.setAttribute('data-smooth-scroll-to', 'element-id');
+// or
+someElement.dataset.smoothScrollTo = 'element-id';
 ```
-If you don't have such a case, then just delete it, why not :-D.
+
+I recommend to use `<button>` tags for link elements.
+
+### 5. Let's talk about options
+
+By default they are like this:
+
+```js
+{
+  offsetTop: 0,
+  offsetBottom: 0,
+  offsetLeft: 0,
+  offsetRight: 0,
+  block: 'start',
+  inline: 'nearest',
+  eventListenerOptions: {},
+}
+```
+
+You'll probably need only the `offsetTop` property. Just set your fixed header height and thats all. All the other offsets may be needed if you have some other elements from other directions.
+
+Talking about `block` and `inline`, they represent literally the same thing as in [scrollIntoView](<[https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView)>) do. But don't afraid if you use only `block: 'start'` for all links on the page and suddenly realize you need `block: 'center'` for one element - there is a solution for this at the next step.
+
+The `eventListenerOptions` object goes to the smooth-smooth-scroll eventListener options. There is only one, it is setten on `document` so you can not to afraid of performance issues if you have thousands of links.
+
+### 6. Options for specific element
+
+You can set them via data-attributes, such as:
+
+```html
+data-smooth-scroll-block="center"
+<!-- and -->
+data-smooth-scroll-inline="end"
+```
+
+Look at the third step for more code examples.
+
 ## Finally
-By all these things I want to say feel free to create your own `smoothScroll` function and share the solution with the world.
+
+At first, I didn't want to create an npm package for this, but the name `smooth-smooth-scroll` I come up with sounded so cool so I decided to do it. I hope you find it useful!

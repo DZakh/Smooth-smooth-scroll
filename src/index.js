@@ -26,8 +26,8 @@ export const initSmoothScroll = ({
       behavior: 'smooth',
     };
 
-    const isVerticalOffset = scrollOptions.block !== 'nearest' && (offsetTop || offsetBottom);
-    const isHorizontalOffset = scrollOptions.inline !== 'nearest' && (offsetLeft || offsetRight);
+    const isVerticalOffset = offsetTop || offsetBottom;
+    const isHorizontalOffset = offsetLeft || offsetRight;
 
     if (isVerticalOffset || isHorizontalOffset) {
       const doesAnchorElExist = destinationEl.lastElementChild.classList.contains(
@@ -42,9 +42,9 @@ export const initSmoothScroll = ({
 
         const defaultStyles = `position:absolute;z-index:-1;`;
         // prettier-ignore
-        const verticalStyles = isVerticalOffset ? `height:${destinationEl.offsetHeight + offsetTop + offsetBottom}px;${offsetTop ? `top:-${offsetTop}px;` : ''}${offsetBottom ? `bottom:-${offsetBottom}px;` : ''}` : '';
+        const verticalStyles = isVerticalOffset ? `height:${destinationEl.offsetHeight + offsetTop + offsetBottom}px;${offsetTop ? `top:-${offsetTop}px;` : ''}` : `height:${destinationEl.offsetHeight}px;`;
         // prettier-ignore
-        const horizontalStyles = isHorizontalOffset ? `width:${destinationEl.offsetWidth + offsetLeft + offsetRight}px;${offsetLeft ? `left:-${offsetLeft}px;` : ''}${offsetRight ? `right:-${offsetRight}px;` : ''}` : '';
+        const horizontalStyles = isHorizontalOffset ? `width:${destinationEl.offsetWidth + offsetLeft + offsetRight}px;${offsetLeft ? `left:-${offsetLeft}px;` : ''}` : `width:${destinationEl.offsetWidth}px;`;
 
         const anchorStyles = defaultStyles + verticalStyles + horizontalStyles;
 

@@ -1,9 +1,8 @@
 {
   "name": "smooth-smooth-scroll",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "Lightweight package for smooth scrolling",
   "main": "./dist/index.min.js",
-  "module": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "npx babel ./src -d ./dist --presets=@babel/preset-env,minify --out-file-extension .min.js"
