@@ -42,9 +42,9 @@ export const initSmoothScroll = ({
 
         const defaultStyles = `position:absolute;z-index:-1;`;
         // prettier-ignore
-        const verticalStyles = isVerticalOffset ? `height:${destinationEl.offsetHeight + offsetTop + offsetBottom}px;${offsetTop ? `top:-${offsetTop}px;` : ''}` : `height:${destinationEl.offsetHeight}px;`;
+        const verticalStyles = isVerticalOffset ? `height:${destinationEl.offsetHeight + offsetTop + offsetBottom}px;${offsetTop ? `top:-${offsetTop}px;` : ''}${offsetBottom ? `bottom:-${offsetBottom}px;` : ''}` : `height:${destinationEl.offsetHeight}px;`;
         // prettier-ignore
-        const horizontalStyles = isHorizontalOffset ? `width:${destinationEl.offsetWidth + offsetLeft + offsetRight}px;${offsetLeft ? `left:-${offsetLeft}px;` : ''}` : `width:${destinationEl.offsetWidth}px;`;
+        const horizontalStyles = isHorizontalOffset ? `width:${destinationEl.offsetWidth + offsetLeft + offsetRight}px;${offsetLeft ? `left:-${offsetLeft}px;` : ''}${offsetRight ? `right:-${offsetRight}px;` : ''}` : `width:${destinationEl.offsetWidth}px;`;
 
         const anchorStyles = defaultStyles + verticalStyles + horizontalStyles;
 

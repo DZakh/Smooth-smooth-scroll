@@ -6,7 +6,7 @@ That's a simple to use realization of a smooth scroll for your website. It's esp
 
 - Very lightweight - only _1.42 KB_
 - Works in all alive browsers (requires _4.73 KB_ of polyfills)
-- You can change parameters of scroll after the first activation with a bit of js and easily add new links.
+- You can change parameters of scroll after the first activation with a bit of js and easily add new links
 - It's built with `scrollIntoView` what gives a lot of advantages other smooth-scroll packages don't have:
 
   - It has good performance without weird jankiness and other bugs
@@ -35,12 +35,12 @@ npm i smooth-smooth-scroll
 ### 2. Include _smooth-smooth-scroll_ in your project
 
 ```js
-// Don't forget polyfill first if you need it (Required by Safari and IE)
+// Don't forget polyfill first if you need it (Required by Safari, Edge and IE)
 import 'smooth-smooth-scroll/polyfill';
 import { initSmoothScroll } from 'smooth-smooth-scroll';
 ```
 
-> Note: Polyfill file contains three things: [smoothscroll-polyfill](<[https://www.npmjs.com/package/smoothscroll-polyfill](https://www.npmjs.com/package/smoothscroll-polyfill)>), [lastElementChild polyfill](<[https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/lastElementChild](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/lastElementChild)>) and [closest polyfill](<[https://developer.mozilla.org/en-US/docs/Web/API/Element/closest](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest)>).
+> Note: Polyfill file contains three things: [smoothscroll-polyfill](https://www.npmjs.com/package/smoothscroll-polyfill), [lastElementChild polyfill](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/lastElementChild) and [closest polyfill](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest).
 
 So, it means you can use them further in the project without any worries.
 
@@ -89,7 +89,7 @@ By default they are like this:
 
 You'll probably need only the `offsetTop` property. Just set your fixed header height and thats all. All the other offsets may be needed if you have some other elements from other directions.
 
-Talking about `block` and `inline`, they represent literally the same thing as in [scrollIntoView](<[https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView)>) do. But don't afraid if you use only `block: 'start'` for all links on the page and suddenly realize you need `block: 'center'` for one element - there is a solution for this at the next step.
+Talking about `block` and `inline`, they represent literally the same thing as in [scrollIntoView](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) do. But don't afraid if you use only `block: 'start'` for all links on the page and suddenly realize you need `block: 'center'` for one element - there is a solution for this at the next step.
 
 The `eventListenerOptions` object goes to the smooth-smooth-scroll eventListener options. There is only one, it is setten on `document` so you can not to afraid of performance issues if you have thousands of links.
 
