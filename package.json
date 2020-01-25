@@ -1,12 +1,9 @@
 {
   "name": "smooth-smooth-scroll",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Lightweight package for smooth scrolling",
-  "browser": "./dist/index.min.js",
+  "main": "./dist/index.min.js",
   "module": "./src/index.js",
-  "bin": {
-    "polyfill": "./dist/polyfill.min.js"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "npx babel ./src -d ./dist --presets=@babel/preset-env,minify --out-file-extension .min.js"
@@ -21,9 +18,6 @@
     "url": "https://github.com/DZakh/Smooth-smooth-scroll/issues"
   },
   "homepage": "https://github.com/DZakh/Smooth-smooth-scroll#readme",
-  "dependencies": {
-    "smoothscroll-polyfill": "^0.4.4"
-  },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
