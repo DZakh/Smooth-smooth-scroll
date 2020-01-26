@@ -64,5 +64,8 @@ export const initSmoothScroll = ({
 
   return () => {
     document.removeEventListener('click', smoothScroll, eventListenerOptions);
+
+    const anchorEls = [...document.querySelectorAll('.js-smooth-scroll-anchor')];
+    anchorEls.forEach(anchor => anchor.parentNode.removeChild(anchor));
   };
 };

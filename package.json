@@ -1,7 +1,7 @@
 {
   "name": "smooth-smooth-scroll",
-  "version": "1.2.0",
-  "description": "Lightweight package for smooth scrolling",
+  "version": "1.3.0",
+  "description": "That's a simple to use realization of a smooth scroll for your website. It's especially useful if you have some fixed elements and want to correct the scroll destination.",
   "main": "./dist/index.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
