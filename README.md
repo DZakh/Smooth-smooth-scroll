@@ -4,8 +4,8 @@ That's a simple to use realization of a smooth scroll for your website. It's esp
 
 ## Advantages
 
-- Very lightweight - only _1.42 KB_
-- Works in all alive browsers (requires _4.73 KB_ of polyfills)
+- Very lightweight - only _1.94 KB_
+- Works in all alive browsers (requires _4.1 KB_ of polyfills)
 - You can change parameters of scroll after the first activation with a bit of js and easily add new links
 - It's built with `scrollIntoView` what gives a lot of advantages other smooth-scroll packages don't have:
 
@@ -35,14 +35,14 @@ npm i smooth-smooth-scroll
 ### 2. Include _smooth-smooth-scroll_ in your project
 
 ```js
-// Don't forget polyfill first if you need it (Required by Safari, Edge and IE)
+// Don't forget polyfill first if you need it (Required by Safari and IE)
 import 'smooth-smooth-scroll/polyfill';
 import { initSmoothScroll } from 'smooth-smooth-scroll';
 ```
 
-> Note: Polyfill file contains three things: [smoothscroll-polyfill](https://www.npmjs.com/package/smoothscroll-polyfill), [lastElementChild polyfill](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/lastElementChild) and [closest polyfill](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest).
+> Note: Polyfill file contains two things: [smoothscroll-polyfill](https://www.npmjs.com/package/smoothscroll-polyfill) and [closest polyfill](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest).
 
-So, it means you can use them further in the project without any worries.
+So, it means you can use them further in the project without any old browser support worries.
 
 ### 3. Initialize
 
