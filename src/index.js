@@ -30,14 +30,13 @@ export const initSmoothScroll = ({
     const isHorizontalOffset = offsetLeft || offsetRight;
 
     if (isVerticalOffset || isHorizontalOffset) {
-      const doesAnchorElExist = destinationEl.lastElementChild.classList.contains(
-        'js-smooth-scroll-anchor'
+      const existingAnchorEl = [...destinationEl.children].find(el =>
+        el.matches('.js-smooth-scroll-anchor')
       );
-      const anchorEl = doesAnchorElExist
-        ? destinationEl.lastElementChild
-        : document.createElement('div');
 
-      if (!doesAnchorElExist) {
+      const anchorEl = existingAnchorEl || document.createElement('div');
+
+      if (!existingAnchorEl) {
         destinationEl.setAttribute('style', 'position: relative;');
 
         const defaultStyles = `position:absolute;z-index:-1;`;
@@ -51,7 +50,7 @@ export const initSmoothScroll = ({
         anchorEl.setAttribute('style', anchorStyles);
         anchorEl.setAttribute('class', 'js-smooth-scroll-anchor');
 
-        destinationEl.appendChild(anchorEl);
+        destinationEl.insertAdjacentElement('afterbegin', anchorEl);
       }
 
       scrollIntoElView(anchorEl, scrollOptions);
