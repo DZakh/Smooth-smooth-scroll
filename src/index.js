@@ -6,7 +6,7 @@ export const initSmoothScroll = ({
   block = 'start',
   inline = 'nearest',
   eventListenerOptions = {},
-}) => {
+} = {}) => {
   const scrollIntoElView = (el, scrollOptions) => {
     el.scrollIntoView(scrollOptions);
   };
