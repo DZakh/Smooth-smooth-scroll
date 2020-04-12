@@ -20,6 +20,10 @@ export const initSmoothScroll = ({
 
     const destinationEl = document.getElementById(linkEl.dataset.smoothScrollTo);
 
+    if (destinationEl === null) {
+      throw new Error('Destination element not found.');
+    }
+
     const scrollOptions = {
       block: linkEl.dataset.smoothScrollBlock || block,
       inline: linkEl.dataset.smoothScrollInline || inline,
