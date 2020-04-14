@@ -2,10 +2,11 @@
   "name": "smooth-smooth-scroll",
   "version": "1.5.1",
   "description": "That's a simple to use realization of a smooth scroll for your website. It's especially useful if you have some fixed elements and want to correct the scroll destination.",
-  "main": "./dist/index.min.js",
+  "main": "./build/index.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "npx babel ./src -d ./dist --presets=@babel/preset-env,minify --out-file-extension .min.js"
+    "dev": "rollup --config --sourcemap --watch",
+    "build": "rollup --config --sourcemap"
   },
   "repository": {
     "type": "git",
@@ -21,15 +22,18 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
-    "babel-preset-minify": "^0.5.1",
+    "@rollup/plugin-node-resolve": "^7.1.3",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-node": "^4.0.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "prettier": "^1.18.2"
+    "eslint-plugin-prettier": "^3.1.3",
+    "prettier": "^1.18.2",
+    "rollup": "^2.6.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^5.3.0"
   },
   "keywords": [
     "smooth",
