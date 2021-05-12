@@ -1,3 +1,5 @@
+> Solves the same problem as https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding.
+
 # Smooth smooth scroll
 
 That's a simple to use realization of a smooth scroll for your website. It's especially useful if you have some fixed elements and want to correct the scroll destination.

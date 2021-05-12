@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DZakh/Smooth-smooth-scroll.git"
+    "url": "git+https://github.com/DZakh-packages/Smooth-smooth-scroll.git"
   },
   "author": "Dmitry Zakharov <dzakh.dev@gmail.com> (https://dzakh.dev/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DZakh/Smooth-smooth-scroll/issues"
+    "url": "https://github.com/DZakh-packages/Smooth-smooth-scroll/issues"
   },
-  "homepage": "https://github.com/DZakh/Smooth-smooth-scroll#readme",
+  "homepage": "https://github.com/DZakh-packages/Smooth-smooth-scroll#readme",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
