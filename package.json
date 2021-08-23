@@ -1,6 +1,6 @@
 {
   "name": "smooth-smooth-scroll",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "That's a simple to use realization of a smooth scroll for your website. It's especially useful if you have some fixed elements and want to correct the scroll destination.",
   "main": "./build/index.min.js",
   "scripts": {

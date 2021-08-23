@@ -41,7 +41,7 @@ export const initSmoothScroll = ({
       const anchorEl = existingAnchorEl || document.createElement('div');
 
       if (!existingAnchorEl) {
-        destinationEl.setAttribute('style', 'position: relative;');
+        destinationEl.style.position = 'relative';
 
         const defaultStyles = `position:absolute;z-index:-1;`;
         // prettier-ignore
